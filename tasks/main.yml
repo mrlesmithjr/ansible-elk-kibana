@@ -1,0 +1,4 @@
+---
+# tasks file for ansible-elk-kibana
+- include: kibana.yml
+  tags: [kibana,upgrade_kibana]
