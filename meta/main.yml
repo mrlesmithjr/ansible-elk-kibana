@@ -87,8 +87,8 @@ galaxy_info:
   #  - raring
   #  - saucy
     - trusty
-  #  - utopic
-  #  - vivid
+    - utopic
+    - vivid
   #- name: SLES
   #  versions:
   #  - all
