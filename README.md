@@ -13,6 +13,7 @@ Role Variables
 
 ````
 kibana_dir: /opt
+kibana_host: 0.0.0.0  #defines Kibana host...should remain as 0.0.0.0 unless other requirements are required...research before changing
 kibana_index: .kibana
 kibana_log: /var/log/kibana.log
 kibana_log_rotate_count: 5
