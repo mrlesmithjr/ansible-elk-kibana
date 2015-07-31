@@ -2,3 +2,9 @@
 # tasks file for ansible-elk-kibana
 - include: kibana.yml
   tags: [kibana,upgrade_kibana]
+
+- include: debian.yml
+  when: ansible_os_family == "Debian"
+
+- include: centos.yml
+  when: ansible_os_family == "RedHat"

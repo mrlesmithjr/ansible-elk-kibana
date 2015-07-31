@@ -12,10 +12,6 @@
   template: src=kibana.yml.j2 dest={{ kibana_dir }}/kibana-{{ kibana_version }}-linux-x64/config/kibana.yml
   notify: restart kibana
 
-- name: kibana | configuring kibana service
-  template: src=etc/init/kibana.conf.j2 dest=/etc/init/kibana.conf
-  notify: restart kibana
-
 - name: kibana | checking for existing kibana log file
   stat: path={{ kibana_log }}
   register: kibana_log_file
