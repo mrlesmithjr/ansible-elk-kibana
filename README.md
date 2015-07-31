@@ -13,9 +13,8 @@ Role Variables
 
 ````
 kibana_dir: /opt
-kibana_elasticsearch: 'http://{{ keepalived_vip_hostname }}:9200'  #define elasticsearch cluster..set to keepalived_vip or keepalived_vip_hostname if using keepalived
-kibana_host: 0.0.0.0  #defines Kibana host...should remain as 0.0.0.0 unless other requirements are required...research before changing
 kibana_index: .kibana
+kibana_host: 0.0.0.0  #defines Kibana host...should remain as 0.0.0.0 unless other requirements are required...research before changing
 kibana_log: /var/log/kibana.log
 kibana_log_rotate_count: 5
 kibana_log_rotate_interval: daily
