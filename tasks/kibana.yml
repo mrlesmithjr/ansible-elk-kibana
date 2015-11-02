@@ -1,24 +1,48 @@
 ---
 - name: kibana | creating kibana service account
-  user: name=kibana system=yes home=/var/lib/kibana shell=/bin/false state=present
+  user:
+    name: kibana
+    system: yes
+    home: /var/lib/kibana
+    shell: /bin/false
+    state: present
 
 - name: kibana | downloading kibana
-  get_url: url=https://download.elasticsearch.org/kibana/kibana/kibana-{{ kibana_version }}-linux-x64.tar.gz dest=/usr/local/src/kibana-{{ kibana_version }}-linux-x64.tar.gz
+  get_url:
+    url: "{{ kibana_dl_url }}/{{ kibana_dl_file }}.tar.gz"
+    dest: "{{ kibana_dl_dir }}/{{ kibana_dl_file }}.tar.gz"
 
 - name: kibana | extracting and installing kibana
-  unarchive: src=/usr/local/src/kibana-{{ kibana_version }}-linux-x64.tar.gz dest={{ kibana_dir }} copy=no creates={{ kibana_dir }}/kibana-{{ kibana_version }}-linux-x64
+  unarchive:
+    src: "{{ kibana_dl_dir }}/{{ kibana_dl_file }}.tar.gz"
+    dest: "{{ kibana_dir }}"
+    copy: no
+    creates: "{{ kibana_dir }}/{{ kibana_dl_file }}"
 
 - name: kibana | configuring kibana
-  template: src=kibana.yml.j2 dest={{ kibana_dir }}/kibana-{{ kibana_version }}-linux-x64/config/kibana.yml
+  template:
+    src: kibana.yml.j2
+    dest: "{{ kibana_dir }}/{{ kibana_dl_file }}/config/kibana.yml"
   notify: restart kibana
 
 - name: kibana | checking for existing kibana log file
-  stat: path={{ kibana_log }}
+  stat:
+    path: "{{ kibana_log }}"
   register: kibana_log_file
 
 - name: kibana | creating kibana log file
-  file: path={{ kibana_log}} state=touch owner=kibana group=kibana mode=0644
+  file:
+    path: "{{ kibana_log}}"
+    state: touch
+    owner: kibana
+    group: kibana
+    mode: 0644
   when: not kibana_log_file.stat.exists
 
 - name: kibana | configure kibana log rotation
-  template: src=etc/logrotate.d/kibana.j2 dest=/etc/logrotate.d/kibana owner=root group=root mode=0644
+  template:
+    src: etc/logrotate.d/kibana.j2
+    dest: /etc/logrotate.d/kibana
+    owner: root
+    group: root
+    mode: 0644

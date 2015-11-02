@@ -1,6 +1,9 @@
 ---
 # defaults file for ansible-elk-kibana
 kibana_dir: /opt
+kibana_dl_dir: /opt
+kibana_dl_file: "kibana-{{ kibana_version }}-linux-x64"
+kibana_dl_url: "https://download.elastic.co/kibana/kibana"
 kibana_elasticsearch_url: localhost  #defines where to connect to elasticsearch for kibana...default is localhost...change to fit environment requirements...define here or in group_vars/group
 kibana_index: .kibana
 kibana_host: 0.0.0.0  #defines Kibana host...should remain as 0.0.0.0 unless other requirements are required...research before changing
