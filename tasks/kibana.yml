@@ -18,6 +18,8 @@
     dest: "{{ kibana_dir }}"
     copy: no
     creates: "{{ kibana_dir }}/{{ kibana_dl_file }}"
+    owner: kibana
+    group: kibana
 
 - name: kibana | configuring kibana
   template:
