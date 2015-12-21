@@ -5,7 +5,11 @@ port: {{ kibana_port }}
 host: "{{ kibana_host }}"
 
 # The Elasticsearch instance to use for all your queries.
+{% if kibana_docker_install is defined and not kibana_docker_install %}
 elasticsearch_url: "http://{{ kibana_elasticsearch_url }}:9200"
+{% elif kibana_docker_install is defined and kibana_docker_install %}
+elasticsearch_url: "http://{{ kibana_docker_elasticsearch_container_name }}:9200"
+{% endif %}
 
 # preserve_elasticsearch_host true will send the hostname specified in `elasticsearch`. If you set it to false,
 # then the host you use to connect to *this* Kibana instance will be sent.

@@ -48,3 +48,12 @@
     owner: root
     group: root
     mode: 0644
+
+- name: kibana | configuring Docker startup script
+  template:
+    src: kibana.sh.j2
+    dest: /opt/kibana.sh
+    owner: root
+    group: root
+    mode: 0744
+  when: kibana_docker_install is defined and kibana_docker_install

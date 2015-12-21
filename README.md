@@ -6,13 +6,20 @@ Installs and configures Kibana for ELK Stack https://www.elastic.co/products/kib
 Requirements
 ------------
 
-If setting up a scaled out HA ELK deployment ensure that your kibana node is either running elasticsearch or change the variable for kibana_elasticsearch_url in defaults/main.yml ...Another option (recommended) is to define this variable in your group_vars/group for your ELK group for consistency. 
+If setting up a scaled out HA ELK deployment ensure that your kibana node is either running elasticsearch or change the variable for kibana_elasticsearch_url in defaults/main.yml ...Another option (recommended) is to define this variable in your group_vars/group for your ELK group for consistency.
 
 Role Variables
 --------------
 
 ````
+---
+# defaults file for ansible-elk-kibana
 kibana_dir: /opt
+kibana_dl_dir: /opt
+kibana_dl_file: "kibana-{{ kibana_version }}-linux-x64"
+kibana_dl_url: "https://download.elastic.co/kibana/kibana"
+kibana_docker_elasticsearch_container_name: elasticsearch  #defines the Docker container name to link to for elasticsearch
+kibana_docker_install: false  #defines if Kibana is being installed as a Docker container
 kibana_elasticsearch_url: localhost  #defines where to connect to elasticsearch for kibana...default is localhost...change to fit environment requirements...define here or in group_vars/group
 kibana_index: .kibana
 kibana_host: 0.0.0.0  #defines Kibana host...should remain as 0.0.0.0 unless other requirements are required...research before changing

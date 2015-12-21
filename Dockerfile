@@ -11,22 +11,30 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #Clean up Ansible playbooks
-RUN rm -rf /opt/ansible-playbooks
+#RUN rm -rf /opt/ansible-playbooks
 
 #Clone docker ansible playbooks from GitHub
-RUN git clone https://github.com/mrlesmithjr/docker-ansible-playbooks.git /opt/ansible-playbooks/
+#RUN git clone https://github.com/mrlesmithjr/docker-ansible-playbooks.git /opt/ansible-playbooks/
+
+#Copy Ansible requirements
+COPY requirements.yml /tmp/
 
 #Install Ansible role requirements
-RUN ansible-galaxy install -r /opt/ansible-playbooks/elk-kibana/requirements.yml
+#RUN ansible-galaxy install -r /opt/ansible-playbooks/elk-kibana/requirements.yml
+RUN ansible-galaxy install -r /tmp/requirements.yml
+
+#Copy Ansible playbooks
+COPY playbook.yml /tmp/
 
 #Run Ansible playbook to install ELK-Kibana
-RUN ansible-playbook -i "localhost," -c local /opt/ansible-playbooks/elk-kibana/playbook.yml
+#RUN ansible-playbook -i "localhost," -c local /opt/ansible-playbooks/elk-kibana/playbook.yml
+RUN ansible-playbook -i "localhost," -c local /tmp/playbook.yml
 
 #Remove Ansible roles
 RUN ansible-galaxy remove /etc/ansible/roles/*
 
 #Clean up Ansible Playbooks
-RUN rm -rf /opt/ansible-playbooks
+#RUN rm -rf /opt/ansible-playbooks
 
 #Clean up APT
 RUN apt-get clean
@@ -34,4 +42,4 @@ RUN apt-get clean
 #Expose Ports
 EXPOSE 5601
 
-CMD ["/opt/kibana-4.1.3-linux-x64/bin/kibana >> /var/log/kibana.log 2>&1"]
+CMD ["/opt/kibana.sh"]
