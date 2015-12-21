@@ -16,22 +16,25 @@ RUN apt-get update && apt-get install -y \
 #Clone docker ansible playbooks from GitHub
 #RUN git clone https://github.com/mrlesmithjr/docker-ansible-playbooks.git /opt/ansible-playbooks/
 
+#Create Ansible Folder
+RUN mkdir -p /opt/ansible-playbooks
+
 #Copy Ansible requirements
-COPY requirements.yml /tmp/
+COPY requirements.yml /opt/ansible-playbooks/
 
 #Install Ansible role requirements
 #RUN ansible-galaxy install -r /opt/ansible-playbooks/elk-kibana/requirements.yml
-RUN ansible-galaxy install -r /tmp/requirements.yml
+RUN ansible-galaxy install -r /opt/ansible-playbooks/requirements.yml
 
 #Copy Ansible playbooks
-COPY playbook.yml /tmp/
+COPY playbook.yml /opt/ansible-playbooks/
 
 #Run Ansible playbook to install ELK-Kibana
 #RUN ansible-playbook -i "localhost," -c local /opt/ansible-playbooks/elk-kibana/playbook.yml
-RUN ansible-playbook -i "localhost," -c local /tmp/playbook.yml
+RUN ansible-playbook -i "localhost," -c local /opt/ansible-playbooks/playbook.yml
 
 #Remove Ansible roles
-RUN ansible-galaxy remove /etc/ansible/roles/*
+#RUN ansible-galaxy remove /etc/ansible/roles/*
 
 #Clean up Ansible Playbooks
 #RUN rm -rf /opt/ansible-playbooks
