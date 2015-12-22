@@ -16,7 +16,7 @@ RUN mkdir -p /opt/ansible-playbooks/roles
 #Clone GitHub Repo
 RUN git clone https://github.com/mrlesmithjr/ansible-elk-kibana.git /opt/ansible-playbooks/roles/ansible-elk-kibana && \
   cd /opt/ansible-playbooks/roles/ansible-elk-kibana && \
-  git checkout 4.2.2
+  git checkout 4.3.1
 
 #Copy Ansible playbooks
 COPY playbook.yml /opt/ansible-playbooks/
