@@ -20,8 +20,8 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /opt/ansible-playbooks/roles
 
 #Clone GitHub Repo
-RUN cd /opt/ansible-playbooks/roles && \
-  git clone https://github.com/mrlesmithjr/ansible-elk-kibana.git && \
+RUN git clone https://github.com/mrlesmithjr/ansible-elk-kibana.git /opt/ansible-playbooks/roles/ansible-elk-kibana && \
+  cd /opt/ansible-playbooks/roles/ansible-elk-kibana && \
   git checkout 4.1.3
 
 #Copy Ansible requirements
