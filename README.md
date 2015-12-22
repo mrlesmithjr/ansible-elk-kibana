@@ -44,6 +44,21 @@ Including an example of how to use your role (for instance, with variables passe
       roles:
          - { role: mrlesmithjr.elk-kibana }
 
+Docker Info
+-----------
+
+In order to run as a Docker container you will need to link to an elasticsearch container by default called elasticsearch.
+Ex.
+````
+docker run -d --name elasticsearch -p 9200:9200 mrlesmithjr/elasticsearch
+docker run -d --name kibana -p 5601:5601 --link elasticsearch mrlesmithjr/elk-kibana
+````
+You can change the name of the elasticsearch url after the container is spun up if desired. By executing the following:
+````
+docker exec -it kibana-test ansible-playbook -i "localhost," -c local /opt/ansible-playbooks/playbook.yml --extra-vars="kibana_docker_elasticsearch_container_name=10.0.101.60" && docker restart kibana-test
+````
+The above will change the configuration for Kibana and point to the new location after the container is restarted.
+
 License
 -------
 
