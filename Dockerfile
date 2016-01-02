@@ -1,14 +1,13 @@
 #FROM mrlesmithjr/ansible:ubuntu-12.04
 #FROM mrlesmithjr/ansible:ubuntu-14.04
-FROM mrlesmithjr/ansible
+FROM mrlesmithjr/ubuntu-ansible
 
 MAINTAINER mrlesmithjr@gmail.com
 
 #Installs git
-RUN apt-get update && apt-get install -y \
-  git \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update && apt-get install -y git && \
+    apt-get clean &&\
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #Create Ansible Folder
 RUN mkdir -p /opt/ansible-playbooks/roles
