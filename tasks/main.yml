@@ -6,7 +6,13 @@
     - upgrade_kibana
 
 - include: debian.yml
+  tags:
+    - kibana
+    - upgrade_kibana
   when: ansible_os_family == "Debian"
 
 - include: centos.yml
+  tags:
+    - kibana
+    - upgrade_kibana
   when: ansible_os_family == "RedHat"
