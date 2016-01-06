@@ -16,14 +16,19 @@ RUN apt-get update && apt-get install -y git && \
 #RUN git clone https://github.com/mrlesmithjr/docker-ansible-playbooks.git /opt/ansible-playbooks/
 
 #Create Ansible Folder
-RUN mkdir -p /opt/ansible-playbooks
+RUN mkdir -p /opt/ansible-playbooks/roles
+
+#Clone GitHub Repo
+RUN git clone https://github.com/mrlesmithjr/ansible-elk-kibana.git /opt/ansible-playbooks/roles/ansible-elk-kibana && \
+  cd /opt/ansible-playbooks/roles/ansible-elk-kibana && \
+  git checkout 4.1.4
 
 #Copy Ansible requirements
-COPY requirements.yml /opt/ansible-playbooks/
+#COPY requirements.yml /opt/ansible-playbooks/
 
 #Install Ansible role requirements
 #RUN ansible-galaxy install -r /opt/ansible-playbooks/elk-kibana/requirements.yml
-RUN ansible-galaxy install -r /opt/ansible-playbooks/requirements.yml
+#RUN ansible-galaxy install -r /opt/ansible-playbooks/requirements.yml
 
 #Copy Ansible playbooks
 COPY playbook.yml /opt/ansible-playbooks/
