@@ -6,6 +6,8 @@ Installs and configures Kibana for ELK Stack https://www.elastic.co/products/kib
 Requirements
 ------------
 
+Requires Elasticsearch 2.1+
+
 If setting up a scaled out HA ELK deployment ensure that your kibana node is either running elasticsearch or change the variable for kibana_elasticsearch_url in defaults/main.yml ...Another option (recommended) is to define this variable in your group_vars/group for your ELK group for consistency.
 
 Role Variables
@@ -37,8 +39,6 @@ None
 
 Example Playbook
 ----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
     - hosts: servers
       roles:
