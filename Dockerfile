@@ -8,15 +8,6 @@ MAINTAINER mrlesmithjr@gmail.com
 RUN apt-get update && apt-get install -y git && \
     apt-get clean &&\
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-<<<<<<< HEAD
-
-#Clean up Ansible playbooks
-#RUN rm -rf /opt/ansible-playbooks
-
-#Clone docker ansible playbooks from GitHub
-#RUN git clone https://github.com/mrlesmithjr/docker-ansible-playbooks.git /opt/ansible-playbooks/
-=======
->>>>>>> 4.1.4
 
 #Create Ansible Folder
 RUN mkdir -p /opt/ansible-playbooks/roles
