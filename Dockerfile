@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y git && \
 RUN mkdir -p /opt/ansible-playbooks/roles
 
 #Clone GitHub Repo
-RUN git clone --depth=50 --branch=4.3.1 https://github.com/mrlesmithjr/ansible-elk-kibana.git /opt/ansible-playbooks/roles/ansible-elk-kibana
+RUN git clone --depth=50 --branch=4.4.0 https://github.com/mrlesmithjr/ansible-elk-kibana.git /opt/ansible-playbooks/roles/ansible-elk-kibana
 
 #Copy Ansible playbooks
 COPY playbook.yml /opt/ansible-playbooks/

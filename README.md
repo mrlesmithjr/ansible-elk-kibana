@@ -6,7 +6,7 @@ Installs and configures Kibana for ELK Stack https://www.elastic.co/products/kib
 Requirements
 ------------
 
-Requires Elasticsearch 2.1+
+Requires Elasticsearch 2.2+
 
 If setting up a scaled out HA ELK deployment ensure that your kibana node is either running elasticsearch or change the variable for kibana_elasticsearch_url in defaults/main.yml ...Another option (recommended) is to define this variable in your group_vars/group for your ELK group for consistency.
 
@@ -29,7 +29,7 @@ kibana_log: /var/log/kibana.log
 kibana_log_rotate_count: 5
 kibana_log_rotate_interval: daily
 kibana_port: 5601
-kibana_version: 4.3.1
+kibana_version: 4.4.0
 ````
 
 Dependencies
