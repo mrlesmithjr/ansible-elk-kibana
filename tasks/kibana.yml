@@ -21,6 +21,28 @@
     owner: kibana
     group: kibana
 
+- name: kibana | checking for babelcache
+  stat:
+    path: "{{ kibana_dir }}/{{ kibana_dl_file }}/optimize/.babelcache.json"
+  register: babelcache_check
+
+- name: kibana | setting permissions on babelcache
+  file:
+    path: "{{ kibana_dir }}/{{ kibana_dl_file }}/optimize/.babelcache.json"
+    owner: kibana
+    group: kibana
+    mode: o+w
+  when: babelcache_check.stat.exists
+
+- name: kibana | set babelcache permissions
+  file:
+    path: "{{ kibana_dir }}/{{ kibana_dl_file }}/optimize/.babelcache.json"
+    state: touch
+    owner: kibana
+    group: kibana
+    mode: o+w
+  when: not babelcache_check.stat.exists
+
 - name: kibana | configuring kibana
   template:
     src: kibana.yml.j2
@@ -34,7 +56,7 @@
 
 - name: kibana | creating kibana log file
   file:
-    path: "{{ kibana_log}}"
+    path: "{{ kibana_log }}"
     state: touch
     owner: kibana
     group: kibana
