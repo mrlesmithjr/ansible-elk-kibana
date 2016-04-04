@@ -25,6 +25,7 @@
   stat:
     path: "{{ kibana_dir }}/{{ kibana_dl_file }}/optimize/.babelcache.json"
   register: babelcache_check
+  when: kibana_fix_babelcache_perms
 
 - name: kibana | setting permissions on babelcache
   file:
@@ -32,7 +33,9 @@
     owner: kibana
     group: kibana
     mode: o+w
-  when: babelcache_check.stat.exists
+  when: >
+        kibana_fix_babelcache_perms and
+        babelcache_check.stat.exists
 
 - name: kibana | set babelcache permissions
   file:
@@ -41,7 +44,9 @@
     owner: kibana
     group: kibana
     mode: o+w
-  when: not babelcache_check.stat.exists
+  when: >
+        kibana_fix_babelcache_perms and
+        not babelcache_check.stat.exists
 
 - name: kibana | configuring kibana
   template:
