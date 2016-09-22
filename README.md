@@ -30,7 +30,7 @@ kibana_log: /var/log/kibana.log
 kibana_log_rotate_count: 5
 kibana_log_rotate_interval: daily
 kibana_port: 5601
-kibana_version: 4.4.0
+kibana_version: 4.6.1
 ````
 
 Dependencies
