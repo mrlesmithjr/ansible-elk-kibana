@@ -2,7 +2,7 @@
 # defaults file for ansible-elk-kibana
 kibana_dir: /opt
 kibana_dl_dir: /opt
-kibana_dl_file: "kibana-{{ kibana_version }}-linux-x64"
+kibana_dl_file: "kibana-{{ kibana_version }}-linux-x86_64"
 kibana_dl_url: "https://download.elastic.co/kibana/kibana"
 kibana_docker_elasticsearch_container_name: elasticsearch  #defines the Docker container name to link to for elasticsearch
 kibana_docker_install: false  #defines if Kibana is being installed as a Docker container
