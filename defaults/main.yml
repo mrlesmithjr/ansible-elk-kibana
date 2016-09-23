@@ -4,7 +4,7 @@ config_kibana: true  #Defines if Kibana should be configured
 kibana_dir: '/opt/kibana'
 kibana_debian_repo_info:
   key: 'https://packages.elastic.co/GPG-KEY-elasticsearch'
-  repo: 'deb http://packages.elastic.co/kibana/{{ kibana_major_ver }}/debian stable main'
+  repo: 'deb http://packages.elastic.co/kibana/{{ kibana_major_version }}/debian stable main'
 kibana_docker_elasticsearch_container_name: elasticsearch  #defines the Docker container name to link to for elasticsearch
 kibana_docker_install: false  #defines if Kibana is being installed as a Docker container
 kibana_elasticsearch_url: localhost  #defines where to connect to elasticsearch for kibana...default is localhost...change to fit environment requirements...define here or in group_vars/group

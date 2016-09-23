@@ -1,6 +1,6 @@
 ---
 # tasks file for ansible-elk-kibana
-- include: remove_legacy_kibana_install.yml
+- include: remove_legacy_install.yml
   when: remove_legacy_kibana_install
 
 - include: debian.yml
