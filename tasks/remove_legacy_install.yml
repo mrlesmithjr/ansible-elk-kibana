@@ -27,3 +27,9 @@
     name: "kibana"
     state: "absent"
   when: legacy_kibana.stat.exists
+
+- name: remove_legacy_install | Removing Legacy Kibana Folder
+  file:
+    path: "{{ kibana_dir }}"
+    state: "absent"
+  when: legacy_kibana.stat.exists
