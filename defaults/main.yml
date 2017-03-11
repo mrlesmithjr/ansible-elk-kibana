@@ -66,6 +66,7 @@ kibana_port: '5601'
 kibana_remove_legacy_install: true
 
 # Kibana x-pack plugin settings
+kibana_xpack_plugin_installed: false
 kibana_xpack_graph_enabled: true
 kibana_xpack_monitoring_enabled: true
 kibana_xpack_reporting_enabled: true
